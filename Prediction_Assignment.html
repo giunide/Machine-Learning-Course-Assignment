@@ -252,9 +252,26 @@ confusionMatrix(rfmp, test_set$classe)</code></pre>
 ## Balanced Accuracy      0.9995   0.9973   0.9969   0.9957   0.9968</code></pre>
 </div>
 </div>
-<div id="model-selection" class="section level1">
-<h1>Model Selection</h1>
+<div id="model-selection-out-of-sample-error" class="section level1">
+<h1>Model Selection &amp; Out of sample Error</h1>
 <p>Our definitive model is the Random Forest Model (0.9962) which has the highest accuracy, in comparison with the classification tree model (0.7266)</p>
+<pre class="r"><code>rfm$finalModel</code></pre>
+<pre><code>## 
+## Call:
+##  randomForest(x = x, y = y, mtry = param$mtry) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 27
+## 
+##         OOB estimate of  error rate: 0.35%
+## Confusion matrix:
+##      A    B    C    D    E class.error
+## A 3348    0    0    0    0 0.000000000
+## B    8 2266    4    1    0 0.005704256
+## C    0    7 2047    0    0 0.003407984
+## D    0    0   14 1915    1 0.007772021
+## E    0    1    0    5 2159 0.002771363</code></pre>
+<p>As we can see the Out of sample error is of 0.35%.</p>
 <div id="final-model-prediction" class="section level2">
 <h2>Final Model Prediction</h2>
 <pre class="r"><code>rfmv &lt;- predict(rfm, newdata = testing)
